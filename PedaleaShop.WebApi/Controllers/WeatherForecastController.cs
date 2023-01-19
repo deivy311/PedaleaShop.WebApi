@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace PedaleaShop.WebApi.Controllers
+namespace PedaleaShop.WebApi.Application.Controllers
 {
     [ApiController]
     [Route("[controller]")]

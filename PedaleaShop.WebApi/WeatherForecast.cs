@@ -1,4 +1,4 @@
-namespace PedaleaShop.WebApi
+namespace PedaleaShop.WebApi.Application
 {
     public class WeatherForecast
     {
