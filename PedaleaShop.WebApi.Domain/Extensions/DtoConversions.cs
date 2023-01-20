@@ -62,24 +62,24 @@ namespace PedaleaShop.WebApi.Domain.Extensions
                     SizeName = Convert.ToString(row["SizeName"])
 
                 });
-                //return (from product in products
-                //        select new ProductDto
-                //        {
-                //            Id = product.Id,
-                //            Name=product.Name,
-                //            Description=product.Description,
-                //            ImageURL=product.ImageURL,
-                //            Price=product.Price,
-                //            Quantity=product.Quantity,
-                //            CategoryId= product.Category.Id,
-                //            ColorId = product.Color.Id,
-                //            SizeId = product.Size.Id,
-                //            CategoryName = product.Category.Name,
-                //            ColorName = product.Color.Name,
-                //            SizeName = product.Size.Name
-                //        }).ToList();
-
             }
+        public static IEnumerable<ShoppingCartItemDto> ConvertToShoppingCartItemDto(this DataTable shoppingCartItem)
+        {
+            return shoppingCartItem.AsEnumerable().Select(row => new ShoppingCartItemDto
+            {
+                Id=Convert.ToInt32(row["Id"]),
+                ProductId=Convert.ToInt32(row["ProductId"]),
+                CartId=Convert.ToInt32(row["CartId"]),
+                // separatePlane=Convert.ToInt32(row["separatePlane"]),
+                ProductName=Convert.ToString(row["ProductName"]),
+                ProductDescription=Convert.ToString(row["ProductDescription"]),
+                ProductImageURL=Convert.ToString(row["ProductImageURL"]),
+                Price=Convert.ToDecimal(row["Price"]),
+                TotalPrice=Convert.ToDecimal(row["TotalPrice"]),
+                Quantity=Convert.ToInt32(row["Quantity"]),
+
+            });
+        }
         public static ProductDto ConvertToDto(this Product product)
                                                    
         {
@@ -101,13 +101,13 @@ namespace PedaleaShop.WebApi.Domain.Extensions
 
         }
 
-        public static IEnumerable<CartItemDto> ConvertToDto(this IEnumerable<ShoppingCartItem> cartItems,
+        public static IEnumerable<ShoppingCartItemDto> ConvertToDto(this IEnumerable<ShoppingCartItem> cartItems,
                                                             IEnumerable<Product> products)
         {
             return (from cartItem in cartItems
                     join product in products
                     on cartItem.ProductId equals product.Id
-                    select new CartItemDto
+                    select new ShoppingCartItemDto
                     {
                         Id = cartItem.Id,
                         ProductId = cartItem.ProductId,
@@ -120,10 +120,10 @@ namespace PedaleaShop.WebApi.Domain.Extensions
                         TotalPrice = product.Price * cartItem.Quantity
                     }).ToList();
         }
-        public static CartItemDto ConvertToDto(this ShoppingCartItem cartItem,
+        public static ShoppingCartItemDto ConvertToDto(this ShoppingCartItem cartItem,
                                                     Product product)
         {
-            return new CartItemDto
+            return new ShoppingCartItemDto
                  {
                      Id = cartItem.Id,
                      ProductId = cartItem.ProductId,

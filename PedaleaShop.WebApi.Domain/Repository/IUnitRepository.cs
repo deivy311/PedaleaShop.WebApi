@@ -17,7 +17,8 @@ namespace PedaleaShop.WebApi.Infrastructure.Repository
         IProductsCategoriesRepository ProductsCategoriesRepository { get; }
         IProductsColorsRepository ProductsColorsRepository { get; }
         IProductsSizesRepository ProductsSizesRepository { get; }
+        IShoppingCartsItemsRepository ShoppingCartsItemsRepository { get; }
 
 
-    }
+}
 }

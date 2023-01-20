@@ -15,6 +15,7 @@ namespace PedaleaShop.WebApi.Infrastructure.UnitRepository
         protected IProductsCategoriesRepository _productsCategoriesRepository;
         protected IProductsColorsRepository _productsColorsRepository;
         protected IProductsSizesRepository _productsSizesRepository;
+        protected IShoppingCartsItemsRepository _shoppingCartsItemsRepository;
         protected IUsersRepository _usersRepository;
         protected string _sqlConnectionString;
         IConfiguration _configuration;
@@ -40,6 +41,10 @@ namespace PedaleaShop.WebApi.Infrastructure.UnitRepository
         public IProductsSizesRepository ProductsSizesRepository
         {
             get { return _productsSizesRepository = _productsSizesRepository ?? new ProductsSizesRepository(_configuration); }
+        }
+        public IShoppingCartsItemsRepository ShoppingCartsItemsRepository
+        {
+            get { return _shoppingCartsItemsRepository = _shoppingCartsItemsRepository ?? new ShoppingCartsItemsRepository(_configuration); }
         }
 
         public IUsersRepository UsersRepository

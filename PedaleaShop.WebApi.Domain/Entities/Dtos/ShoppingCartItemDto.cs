@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace PedaleaShop.WebApi.Domain.Entities.Dtos
 {
-    public class CartItemDto
+    public class ShoppingCartItemDto
     {
         public int Id { get; set; }
         public int ProductId { get; set; }
         public int CartId { get; set; }
-        public ProductSeparatePlan separatePlane { get; set; }
+        //public ProductSeparatePlan separatePlane { get; set; }
         public string ProductName { get; set; }
         public string ProductDescription { get; set; }
         public string ProductImageURL { get; set; }
