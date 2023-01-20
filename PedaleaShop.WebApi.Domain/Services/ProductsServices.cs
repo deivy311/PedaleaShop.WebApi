@@ -26,11 +26,15 @@ namespace PedaleaShop.WebApi.Domain.Services
         {
             return (await _repository.ProductsRepository.GetAllAsync("dbo.AllProductsView")).ConvertToProductDto();
         }
+
         public async Task<ProductDto> GetEntity(int Id)
         {
-            return (await _repository.ProductsRepository.GetAllAsync("dbo.AllProductsView")).ConvertToProductDto().FirstOrDefault();
+            return (await _repository.ProductsRepository.GetByIdAsync("dbo.AllProductsView", Id)).ConvertToProductDto().FirstOrDefault();
         }
-
+        public async Task<IEnumerable<ProductDto>> GetEntitiesByCategory(int categoryId)
+        {
+            return (await _repository.ProductsRepository.GetByIdAsync("dbo.AllProductsView","CategoryId", categoryId)).ConvertToProductDto();
+        }
 
     }
 }

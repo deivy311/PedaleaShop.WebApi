@@ -11,5 +11,6 @@ namespace PedaleaShop.WebApi.Domain.Services.Interface
     {
         Task<IEnumerable<ProductDto>> GetEntities();
         Task<ProductDto> GetEntity(int Id);
+        Task<IEnumerable<ProductDto>> GetEntitiesByCategory(int categoryId);
     }
 }

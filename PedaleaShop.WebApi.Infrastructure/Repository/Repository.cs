@@ -128,16 +128,18 @@ namespace PedaleaShop.WebApi.Infrastructure.Repository
         public async Task<DataTable> GetAllAsync(string table,CancellationToken cancellationToken = default)
         {
             DataTable dtbl = new DataTable();
-            //dbo.AllProductsView
             return await this.SqlConnectionManager($"SELECT * FROM {table}", false);
-            //}
+  
         }
         public async Task<DataTable> GetByIdAsync(string table, int Id)
         {
             DataTable dtbl = new DataTable();
-            //dbo.AllProductsView
             return await this.SqlConnectionManager($"SELECT * FROM {table} WHERE Id={Id}", false);
-            //}
+        }
+        public async Task<DataTable> GetByIdAsync(string table, string varToCompare, int Id)
+        {
+            DataTable dtbl = new DataTable();
+            return await this.SqlConnectionManager($"SELECT * FROM {table} WHERE {varToCompare}={Id}", false);
         }
         public async Task<IEnumerable<T>> GetAllAsync(int q,CancellationToken cancellationToken = default)
         => await dbSet.Take(q).ToListAsync(cancellationToken);

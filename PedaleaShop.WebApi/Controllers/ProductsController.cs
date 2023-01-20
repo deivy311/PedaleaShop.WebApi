@@ -70,66 +70,23 @@ namespace PedaleaShop.WebApi.Application.Controllers
             }
         }
 
-         //}
-        //[HttpGet]
-        //[Route(nameof(GetProductsColors))]
-        //public async Task<ActionResult<IEnumerable<ProductColor>>> GetProductsColors()
-        //{
-        //    try
-        //    {
-        //        var productColors = await productRepository.GetColors();
 
-        //        var productColor = productColors.ConvertToDto();
+        [HttpGet]
+        [Route("{categoryId}/GetItemsByCategory")]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetItemsByCategory(int categoryId)
+        {
+            try
+            {
+                var products = await this._servicesProduct.GetEntitiesByCategory(categoryId);
 
-        //        return Ok(productColor);
+                return Ok(products);
 
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return StatusCode(StatusCodes.Status500InternalServerError,
-        //                        "Error retrieving data from the database");
-        //    }
-
-        //}
-        //[HttpGet]
-        //[Route(nameof(GetProductsSizes))]
-        //public async Task<ActionResult<IEnumerable<ProductColor>>> GetProductsSizes()
-        //{
-        //    try
-        //    {
-        //        var productSizess = await productRepository.GetSizes();
-
-        //        var productSize = productSizess.ConvertToDto();
-
-        //        return Ok(productSize);
-
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return StatusCode(StatusCodes.Status500InternalServerError,
-        //                        "Error retrieving data from the database");
-        //    }
-
-        //}
-
-        //[HttpGet]
-        //[Route("{categoryId}/GetItemsByCategory")]
-        //public async Task<ActionResult<IEnumerable<ProductDto>>> GetItemsByCategory(int categoryId)
-        //{
-        //    try
-        //    {
-        //        var products = await productRepository.GetProdutsByCategory(categoryId);
-
-        //        var productDtos = products.ConvertToDto();
-
-        //        return Ok(productDtos);
-
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return StatusCode(StatusCodes.Status500InternalServerError,
-        //                        "Error retrieving data from the database");
-        //    }
-        //}
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                "Error retrieving data from the database");
+            }
+        }
     }
 }
