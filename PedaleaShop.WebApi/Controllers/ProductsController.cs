@@ -27,17 +27,8 @@ namespace PedaleaShop.WebApi.Application.Controllers
         {
             try
             {
-                //DataTable dtbl = new DataTable();
-                //using (SqlConnection sqlConnection = new SqlConnection(_configuration.GetConnectionString("DefaultDBConnection")))
-                //{
-                //    sqlConnection.Open();
-                //    SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT * FROM dbo.AllProductsView", sqlConnection);
-                //    //sqlDa.SelectCommand.CommandType = CommandType.TableDirect;
-                //    sqlDa.Fill(dtbl);
-                //}
-                //var productDtos = dtbl.ConvertToDto();
-                //return Ok(productDtos);
-                DataTable products = await this._servicesProduct.GetEntities();
+
+                IEnumerable<ProductDto> products = await this._servicesProduct.GetEntities();
 
 
                 if (products == null)
@@ -46,9 +37,7 @@ namespace PedaleaShop.WebApi.Application.Controllers
                 }
                 else
                 {
-                    var productDtos0 = products.ConvertToDto();
-
-                    return Ok(productDtos0);
+                    return Ok(products);
                 }
 
             }

@@ -12,7 +12,7 @@ namespace PedaleaShop.WebApi.Domain.Services.Interface
         //Task AddEntity(Product entity);
         //Task AddEntities(IEnumerable<Product> entities);
         //Product GetEntity(int Id);
-        Task<DataTable> GetEntities();
+        Task<IEnumerable<ProductDto>> GetEntities();
         //Task<IEnumerable<Product>> GetEntities(int q);
         //Task UpdateEntity(Product entity);
         //Task UpdateEntity(IEnumerable<Product> entities);

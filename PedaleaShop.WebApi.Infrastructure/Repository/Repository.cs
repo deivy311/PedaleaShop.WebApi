@@ -29,19 +29,19 @@ namespace PedaleaShop.WebApi.Infrastructure.Repository
         //    dbSet = _dbContext.Set<T>();
 
         //}
-        private DataTable SqlConnectionManager(string Query, bool IdStoredPRocedure)
+        private async Task<DataTable> SqlConnectionManager(string Query, bool IdStoredPRocedure)
         {
             DataTable dtbl = new DataTable();
             using (SqlConnection sqlConnection = new SqlConnection(_sqlConnectionString))
             {
-                sqlConnection.Open();
+                await sqlConnection.OpenAsync();
                 SqlDataAdapter sqlDa = new SqlDataAdapter(Query, sqlConnection);
                 if (IdStoredPRocedure)
                 {
                     sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                 }
                 sqlDa.Fill(dtbl);
-                sqlConnection.Close();
+                await sqlConnection.CloseAsync();
             }
             return dtbl;
         }
@@ -133,13 +133,11 @@ namespace PedaleaShop.WebApi.Infrastructure.Repository
         {
             return _dbContext.Set<T>().ToList();
         }
-        public Task<DataTable> GetAllAsync(CancellationToken cancellationToken = default)
+        public async Task<DataTable> GetAllAsync(string table,CancellationToken cancellationToken = default)
         {
             DataTable dtbl = new DataTable();
-            //using (SqlConnection sqlConnection = new SqlConnection(_configuration.GetConnectionString("DefaultDBConnection")))
-            //{
-            dtbl=this.SqlConnectionManager("SELECT * FROM dbo.AllProductsView", false);
-            return Task.FromResult(dtbl);
+            //dbo.AllProductsView
+            return await this.SqlConnectionManager($"SELECT * FROM {table}", false);
             //}
         }
 

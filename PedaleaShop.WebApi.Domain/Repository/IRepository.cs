@@ -30,7 +30,7 @@ namespace PedaleaShop.WebApi.Infrastructure.Repository
 
         Task CommitAsync();
         IQueryable<T> Filter(Expression<Func<T, bool>> expression);
-        Task<DataTable> GetAllAsync(CancellationToken cancellationToken = default);
+        Task<DataTable> GetAllAsync(string table, CancellationToken cancellationToken = default);
         Task<IEnumerable<T>> GetAllAsync(int q, CancellationToken cancellationToken = default);
         IEnumerable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderby = null, string propierties = "");
     }

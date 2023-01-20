@@ -8,6 +8,7 @@ using PedaleaShop.WebApi.Domain.Services.Interface.Repositories;
 using PedaleaShop.WebApi.Infrastructure.Repository;
 using PedaleaShop.WebApi.Domain.Entities.Dtos;
 using System.Data;
+using PedaleaShop.WebApi.Domain.Extensions;
 
 namespace PedaleaShop.WebApi.Domain.Services
 {
@@ -34,7 +35,9 @@ namespace PedaleaShop.WebApi.Domain.Services
         //public Product GetEntity(int Id) => _repository.ProductsRepository.GetById(Id);
 
 
-        public async Task<DataTable> GetEntities()=> await _repository.ProductsRepository.GetAllAsync();
+        public async Task<IEnumerable<ProductDto>> GetEntities() {
+            return (await _repository.ProductsRepository.GetAllAsync("dbo.AllProductsView")).ConvertToDto();
+                }
         //public async Task<IEnumerable<Product>> GetEntities(int q) => await _repository.ProductsRepository.GetAllAsync(q);
         ////public async Task<IEnumerable<Product>> GetEntities(int CompanyId) => await _repository.ProductsRepository.GetAllAsync(int CompanyId);
 
