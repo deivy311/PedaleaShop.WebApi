@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 namespace PedaleaShop.WebApi.Domain.Services.Interface
 {
-    public interface IProductsServices
+    public interface IProductsColorsServices
     {
-        Task<IEnumerable<ProductDto>> GetEntities();
-        Task<ProductDto> GetEntity(int Id);
+        Task<IEnumerable<ProductColorDto>> GetEntities();
+        Task<ProductColorDto> GetEntity(int Id);
     }
 }

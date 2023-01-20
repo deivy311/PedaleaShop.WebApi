@@ -23,6 +23,7 @@ namespace PedaleaShop.WebApi.Infrastructure.Repository
         void Delete(IEnumerable<T> entities);
         void DeleteWhereD(Expression<Func<T, bool>> where);
         T GetById(int Id);
+        Task<DataTable> GetByIdAsync(string table,int Id);
         T GetCondition(Expression<Func<T, bool>> where);
         IEnumerable<T> Get(Func<T, bool> predicate);
         IEnumerable<T> GetAll();

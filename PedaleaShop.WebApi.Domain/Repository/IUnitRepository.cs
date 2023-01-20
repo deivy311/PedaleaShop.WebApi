@@ -14,11 +14,10 @@ namespace PedaleaShop.WebApi.Infrastructure.Repository
 
         IUsersRepository UsersRepository { get; }
         IProductsRepository ProductsRepository { get; }
+        IProductsCategoriesRepository ProductsCategoriesRepository { get; }
+        IProductsColorsRepository ProductsColorsRepository { get; }
+        IProductsSizesRepository ProductsSizesRepository { get; }
 
-        //IEnumerable<Product> GetProductByCompanyId(int id);
-        //User GetByName(string Name);
 
-        //void Commit();
-        //Task CommitAsync();
     }
 }

@@ -13,10 +13,10 @@ using Microsoft.Extensions.Configuration;
 namespace PedaleaShop.WebApi.Infrastructure.Repositories
 {
 
-    public class ProductsRepository : Repository<ProductDto>, IProductsRepository
+    public class ProductsColorsRepository : Repository<ProductColorDto>, IProductsColorsRepository
     {
 
-        public ProductsRepository(IConfiguration configuration) : base(configuration)
+        public ProductsColorsRepository(IConfiguration configuration) : base(configuration)
         {
         }
     }

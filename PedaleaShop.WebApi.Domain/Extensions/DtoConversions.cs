@@ -16,62 +16,70 @@ namespace PedaleaShop.WebApi.Domain.Extensions
                         IconCSS = productCategory.IconCSS
                     }).ToList();
         }
-        //public static IEnumerable<ProductColor> ConvertToDto(this IEnumerable<Colors> productsColors)
-        //{
-        //    return (from productColor in productsColors
-        //            select new ProductColor
-        //            {
-        //                Id = productColor.Id,
-        //                Name = productColor.Name,
-        //                IconCSS = productColor.IconCSS
-        //            }).ToList();
-        //}
-        //public static IEnumerable<ProductSize> ConvertToDto(this IEnumerable<Size> productsSizes)
-        //{
-        //    return (from productSize in productsSizes
-        //            select new ProductSize
-        //            {
-        //                Id = productSize.Id,
-        //                Name = productSize.Name,
-        //                IconCSS = productSize.IconCSS
-        //            }).ToList();
-        //}
-        public static IEnumerable<ProductDto> ConvertToDto(this DataTable products)
+
+        public static IEnumerable<ProductCategoryDto> ConvertToProductCategoryDto(this DataTable Categories)
         {
-            return products.AsEnumerable().Select(row => new ProductDto
+            return Categories.AsEnumerable().Select(row => new ProductCategoryDto
             {
                 Id = Convert.ToInt32(row["Id"]),
                 Name = Convert.ToString(row["Name"]),
-                Description = Convert.ToString(row["Description"]),
-                ImageURL = Convert.ToString(row["ImageURL"]),
-                Price = Convert.ToDecimal(row["Price"]),
-                Quantity = Convert.ToInt32(row["Quantity"]),
-                CategoryId = Convert.ToInt32(row["CategoryId"]),
-                ColorId = Convert.ToInt32(row["ColorId"]),
-                SizeId = Convert.ToInt32(row["SizeId"]),
-                CategoryName = Convert.ToString(row["CategoryName"]),
-                ColorName = Convert.ToString(row["ColorName"]),
-                SizeName = Convert.ToString(row["SizeName"])
-
+                IconCSS = Convert.ToString(row["IconCSS"]),
             });
-            //return (from product in products
-            //        select new ProductDto
-            //        {
-            //            Id = product.Id,
-            //            Name=product.Name,
-            //            Description=product.Description,
-            //            ImageURL=product.ImageURL,
-            //            Price=product.Price,
-            //            Quantity=product.Quantity,
-            //            CategoryId= product.Category.Id,
-            //            ColorId = product.Color.Id,
-            //            SizeId = product.Size.Id,
-            //            CategoryName = product.Category.Name,
-            //            ColorName = product.Color.Name,
-            //            SizeName = product.Size.Name
-            //        }).ToList();
-
         }
+        public static IEnumerable<ProductColorDto> ConvertToProductColorDto(this DataTable Colors)
+        {
+            return Colors.AsEnumerable().Select(row => new ProductColorDto
+            {
+                Id = Convert.ToInt32(row["Id"]),
+                Name = Convert.ToString(row["Name"]),
+                IconCSS = Convert.ToString(row["IconCSS"]),
+            });
+        }
+        public static IEnumerable<ProductSizeDto> ConvertToProductSizeDto(this DataTable Sizes)
+        {
+            return Sizes.AsEnumerable().Select(row => new ProductSizeDto
+            {
+                Id = Convert.ToInt32(row["Id"]),
+                Name = Convert.ToString(row["Name"]),
+                IconCSS = Convert.ToString(row["IconCSS"]),
+            });
+        }
+        public static IEnumerable<ProductDto> ConvertToProductDto(this DataTable products)
+            {
+                return products.AsEnumerable().Select(row => new ProductDto
+                {
+                    Id = Convert.ToInt32(row["Id"]),
+                    Name = Convert.ToString(row["Name"]),
+                    Description = Convert.ToString(row["Description"]),
+                    ImageURL = Convert.ToString(row["ImageURL"]),
+                    Price = Convert.ToDecimal(row["Price"]),
+                    Quantity = Convert.ToInt32(row["Quantity"]),
+                    CategoryId = Convert.ToInt32(row["CategoryId"]),
+                    ColorId = Convert.ToInt32(row["ColorId"]),
+                    SizeId = Convert.ToInt32(row["SizeId"]),
+                    CategoryName = Convert.ToString(row["CategoryName"]),
+                    ColorName = Convert.ToString(row["ColorName"]),
+                    SizeName = Convert.ToString(row["SizeName"])
+
+                });
+                //return (from product in products
+                //        select new ProductDto
+                //        {
+                //            Id = product.Id,
+                //            Name=product.Name,
+                //            Description=product.Description,
+                //            ImageURL=product.ImageURL,
+                //            Price=product.Price,
+                //            Quantity=product.Quantity,
+                //            CategoryId= product.Category.Id,
+                //            ColorId = product.Color.Id,
+                //            SizeId = product.Size.Id,
+                //            CategoryName = product.Category.Name,
+                //            ColorName = product.Color.Name,
+                //            SizeName = product.Size.Name
+                //        }).ToList();
+
+            }
         public static ProductDto ConvertToDto(this Product product)
                                                    
         {

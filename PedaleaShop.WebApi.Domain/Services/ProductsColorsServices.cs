@@ -12,23 +12,23 @@ using PedaleaShop.WebApi.Domain.Extensions;
 
 namespace PedaleaShop.WebApi.Domain.Services
 {
-    public class ProductsServices: IProductsServices
+    public class ProductsColorsServices: IProductsColorsServices
     {
         public IUnitRepository _repository;
 
 
-        public ProductsServices(IUnitRepository repository)
+        public ProductsColorsServices(IUnitRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<IEnumerable<ProductDto>> GetEntities()
+        public async Task<IEnumerable<ProductColorDto>> GetEntities()
         {
-            return (await _repository.ProductsRepository.GetAllAsync("dbo.AllProductsView")).ConvertToProductDto();
+            return (await _repository.ProductsColorsRepository.GetAllAsync("dbo.AllProductsColorsView")).ConvertToProductColorDto();
         }
-        public async Task<ProductDto> GetEntity(int Id)
+        public async Task<ProductColorDto> GetEntity(int Id)
         {
-            return (await _repository.ProductsRepository.GetAllAsync("dbo.AllProductsView")).ConvertToProductDto().FirstOrDefault();
+            return (await _repository.ProductsColorsRepository.GetAllAsync("dbo.AllProductsColorsView")).ConvertToProductColorDto().FirstOrDefault();
         }
 
 

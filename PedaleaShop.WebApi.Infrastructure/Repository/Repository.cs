@@ -19,16 +19,8 @@ namespace PedaleaShop.WebApi.Infrastructure.Repository
     {
         protected readonly ApplicationDbContext _dbContext;
         public readonly DbSet<T> dbSet;
-        //public readonly SqlConnection _sqlConnection;
         public readonly string _sqlConnectionString;
-        //public Repository(IFactoryDb dbContext)
-        //public Repository(ApplicationDbContext dbContext)
-        //{
-        //    _dbContext = dbContext;
-        //    //_dbContext.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
-        //    dbSet = _dbContext.Set<T>();
 
-        //}
         private async Task<DataTable> SqlConnectionManager(string Query, bool IdStoredPRocedure)
         {
             DataTable dtbl = new DataTable();
@@ -140,7 +132,13 @@ namespace PedaleaShop.WebApi.Infrastructure.Repository
             return await this.SqlConnectionManager($"SELECT * FROM {table}", false);
             //}
         }
-
+        public async Task<DataTable> GetByIdAsync(string table, int Id)
+        {
+            DataTable dtbl = new DataTable();
+            //dbo.AllProductsView
+            return await this.SqlConnectionManager($"SELECT * FROM {table} WHERE Id={Id}", false);
+            //}
+        }
         public async Task<IEnumerable<T>> GetAllAsync(int q,CancellationToken cancellationToken = default)
         => await dbSet.Take(q).ToListAsync(cancellationToken);
         public async Task AddAsync(T entity, CancellationToken cancellationToken = default)
