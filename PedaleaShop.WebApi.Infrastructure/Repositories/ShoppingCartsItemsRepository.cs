@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using PedaleaShop.WebApi.Infrastructure.Repository;
 using PedaleaShop.WebApi.Domain.Entities.Dtos;
 using Microsoft.Extensions.Configuration;
+using System.Data;
+using Microsoft.Data.SqlClient;
 
 namespace PedaleaShop.WebApi.Infrastructure.Repositories
 {
@@ -18,6 +20,19 @@ namespace PedaleaShop.WebApi.Infrastructure.Repositories
 
         public ShoppingCartsItemsRepository(IConfiguration configuration) : base(configuration)
         {
+        }
+
+        public async Task<DataTable> AddEntityAsync(string shoppingCartItemDtoSp, ShoppingCartItemToAddDto cartItemToAddDto)
+        {
+            List<SqlParameter> sqlParameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@CartProductToAddId",cartItemToAddDto.CartId),
+                new SqlParameter("@ProductToAddId",cartItemToAddDto.ProductId),
+                new SqlParameter("@QuantityProductToAddId",cartItemToAddDto.Quantity),
+
+            };
+            return await this.SqlConnectionManager(shoppingCartItemDtoSp, sqlParameters);
+
         }
     }
 

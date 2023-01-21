@@ -21,7 +21,7 @@ namespace PedaleaShop.WebApi.Infrastructure.Repository
         public readonly DbSet<T> dbSet;
         public readonly string _sqlConnectionString;
 
-        private async Task<DataTable> SqlConnectionManager(string Query, bool IdStoredPRocedure)
+        public async Task<DataTable> SqlConnectionManager(string Query, bool IdStoredPRocedure)
         {
             DataTable dtbl = new DataTable();
             using (SqlConnection sqlConnection = new SqlConnection(_sqlConnectionString))
@@ -31,7 +31,25 @@ namespace PedaleaShop.WebApi.Infrastructure.Repository
                 if (IdStoredPRocedure)
                 {
                     sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    //sqlDa.SelectCommand.Parameters.AddRange = CommandType.StoredProcedure;
+
                 }
+                sqlDa.Fill(dtbl);
+                await sqlConnection.CloseAsync();
+            }
+            return dtbl;
+        }
+        public async Task<DataTable> SqlConnectionManager(string Query, List<SqlParameter> sqlParameters)
+        {
+            DataTable dtbl = new DataTable();
+            using (SqlConnection sqlConnection = new SqlConnection(_sqlConnectionString))
+            {
+                await sqlConnection.OpenAsync();
+                SqlDataAdapter sqlDa = new SqlDataAdapter(Query, sqlConnection);
+  
+                sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                sqlDa.SelectCommand.Parameters.AddRange(sqlParameters.ToArray());
+
                 sqlDa.Fill(dtbl);
                 await sqlConnection.CloseAsync();
             }
@@ -127,7 +145,6 @@ namespace PedaleaShop.WebApi.Infrastructure.Repository
         }
         public async Task<DataTable> GetAllAsync(string table,CancellationToken cancellationToken = default)
         {
-            DataTable dtbl = new DataTable();
             return await this.SqlConnectionManager($"SELECT * FROM {table}", false);
   
         }
@@ -138,8 +155,11 @@ namespace PedaleaShop.WebApi.Infrastructure.Repository
         }
         public async Task<DataTable> GetByIdAsync(string table, string varToCompare, int Id)
         {
-            DataTable dtbl = new DataTable();
             return await this.SqlConnectionManager($"SELECT * FROM {table} WHERE {varToCompare}={Id}", false);
+        }
+        public async Task<DataTable> GetByIdAsync(string table, string varToCompare, string Id)
+        {
+            return await this.SqlConnectionManager($"SELECT * FROM {table} WHERE {varToCompare}='{Id}'", false);
         }
         public async Task<IEnumerable<T>> GetAllAsync(int q,CancellationToken cancellationToken = default)
         => await dbSet.Take(q).ToListAsync(cancellationToken);
@@ -161,5 +181,7 @@ namespace PedaleaShop.WebApi.Infrastructure.Repository
             => _dbContext.UpdateRange(entities);
         public void Update(IEnumerable<T> entities)
             => _dbContext.UpdateRange(entities);
+
+
     }
 }

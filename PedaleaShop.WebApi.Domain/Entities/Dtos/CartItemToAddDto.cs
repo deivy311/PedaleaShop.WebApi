@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PedaleaShop.WebApi.Domain.Entities.Dtos
 {
-    public class CartItemToAddDto
+    public class ShoppingCartItemToAddDto
     {
         public int CartId { get; set; }
         public int ProductId { get; set; }

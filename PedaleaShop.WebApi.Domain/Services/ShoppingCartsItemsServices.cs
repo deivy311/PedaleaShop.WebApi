@@ -22,10 +22,21 @@ namespace PedaleaShop.WebApi.Domain.Services
             _repository = repository;
         }
 
+        public async Task<ShoppingCartItemDto?> AddEntity(ShoppingCartItemToAddDto cartItemToAddDto)
+        {
+            return (await _repository.ShoppingCartsItemsRepository.AddEntityAsync("dbo.ShoppingCartItemToAddSp", cartItemToAddDto)).ConvertToShoppingCartItemDto()?.FirstOrDefault();
+        }
+
         public async Task<IEnumerable<ShoppingCartItemDto>> GetEntities()
         {
             return (await _repository.ShoppingCartsItemsRepository.GetAllAsync("dbo.AllShoppingCartsItemsView")).ConvertToShoppingCartItemDto();
         }
+
+        public async Task<IEnumerable<ShoppingCartItemDto>> GetEntities(string userId)
+        {
+            return (await _repository.ShoppingCartsItemsRepository.GetByIdAsync("dbo.AllShoppingCartsItemsView", "UserId",userId)).ConvertToShoppingCartItemDto();
+        }
+
         public async Task<ShoppingCartItemDto> GetEntity(int Id)
         {
             return (await _repository.ShoppingCartsItemsRepository.GetAllAsync("dbo.AllShoppingCartsItemsView")).ConvertToShoppingCartItemDto().FirstOrDefault();

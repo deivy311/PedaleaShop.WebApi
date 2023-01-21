@@ -6,11 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Data;
+using Microsoft.Data.SqlClient;
 
 namespace PedaleaShop.WebApi.Infrastructure.Repository
 {
     public interface IRepository<T> where T : class
     {
+        Task<DataTable> SqlConnectionManager(string Query, bool IdStoredPRocedure);
+        Task<DataTable> SqlConnectionManager(string Query, List<SqlParameter> sqlParameters);
         void Add(T entity);
         void Add(IEnumerable<T> entities);
         void Add(List<T> entity);
@@ -25,6 +28,7 @@ namespace PedaleaShop.WebApi.Infrastructure.Repository
         T GetById(int Id);
         Task<DataTable> GetByIdAsync(string table,int Id);
         Task<DataTable> GetByIdAsync(string table, string varToCompare, int Id);
+        Task<DataTable> GetByIdAsync(string table, string varToCompare, string Id);
         T GetCondition(Expression<Func<T, bool>> where);
         IEnumerable<T> Get(Func<T, bool> predicate);
         IEnumerable<T> GetAll();

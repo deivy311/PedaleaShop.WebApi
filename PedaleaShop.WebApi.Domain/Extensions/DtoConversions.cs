@@ -63,8 +63,13 @@ namespace PedaleaShop.WebApi.Domain.Extensions
 
                 });
             }
-        public static IEnumerable<ShoppingCartItemDto> ConvertToShoppingCartItemDto(this DataTable shoppingCartItem)
+        public static IEnumerable<ShoppingCartItemDto>? ConvertToShoppingCartItemDto(this DataTable shoppingCartItem)
         {
+            DataColumnCollection columns = shoppingCartItem.Columns;
+            if (shoppingCartItem.Columns.Contains("Result"))
+            {
+                if (Convert.ToInt32(shoppingCartItem.Rows[0]["Result"]) == 0) return null;
+            }
             return shoppingCartItem.AsEnumerable().Select(row => new ShoppingCartItemDto
             {
                 Id=Convert.ToInt32(row["Id"]),
