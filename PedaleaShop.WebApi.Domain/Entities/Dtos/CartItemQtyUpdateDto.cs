@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PedaleaShop.WebApi.Domain.Entities.Dtos
 {
-    public class CartItemQuantityUpdateDto
+    public class ShoppingCartItemQuantityUpdateDto
     {
         public int CartItemId { get; set; }
         public int Quantity { get; set; }

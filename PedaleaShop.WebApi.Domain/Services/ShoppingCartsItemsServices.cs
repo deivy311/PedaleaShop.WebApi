@@ -47,6 +47,9 @@ namespace PedaleaShop.WebApi.Domain.Services
             return (await _repository.ShoppingCartsItemsRepository.GetAllAsync("dbo.AllShoppingCartsItemsView")).ConvertToShoppingCartItemDto().FirstOrDefault();
         }
 
-
+        public async Task<ShoppingCartItemDto?> UpdateEntittyQuantity(int Id, ShoppingCartItemQuantityUpdateDto cartItemQuantityUpdateDto)
+        {
+            return (await _repository.ShoppingCartsItemsRepository.UpdateEntityAsync("dbo.ShoppingCartItemToUpdateSp", cartItemQuantityUpdateDto)).ConvertToShoppingCartItemDto()?.FirstOrDefault();
+        }
     }
 }

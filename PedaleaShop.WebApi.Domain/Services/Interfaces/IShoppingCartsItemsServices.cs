@@ -14,5 +14,6 @@ namespace PedaleaShop.WebApi.Domain.Services.Interface
         Task<ShoppingCartItemDto> GetEntity(int Id);
         Task<ShoppingCartItemDto?> AddEntity(ShoppingCartItemToAddDto cartItemToAddDto);
         Task<ShoppingCartItemDto?> DeleteEntity(int Id);
+        Task<ShoppingCartItemDto?> UpdateEntittyQuantity(int Id, ShoppingCartItemQuantityUpdateDto cartItemQuantityUpdateDto);
     }
 }

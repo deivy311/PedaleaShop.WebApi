@@ -133,5 +133,25 @@ namespace PedaleaShop.WebApi.Application.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
+        [HttpPatch("{Id:int}")]
+        public async Task<ActionResult<ShoppingCartItemDto>> UpdateQuantity(int Id, ShoppingCartItemQuantityUpdateDto cartItemQuantityUpdateDto)
+        {
+            try
+            {
+                var cartItem = await this._servicesShoppingCartItem.UpdateEntittyQuantity(Id, cartItemQuantityUpdateDto);
+                if (cartItem == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(cartItem);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+
+        }
     }
 }

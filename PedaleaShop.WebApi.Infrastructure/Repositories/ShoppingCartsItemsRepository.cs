@@ -44,6 +44,17 @@ namespace PedaleaShop.WebApi.Infrastructure.Repositories
             };
             return await this.SqlConnectionManager(shoppingCartItemDtoSp, sqlParameters);
         }
+
+        public async Task<DataTable> UpdateEntityAsync(string shoppingCartItemDtoSp, ShoppingCartItemQuantityUpdateDto cartItemQuantityUpdateDto)
+        {
+            List<SqlParameter> sqlParameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@CartProductToUpdateId",cartItemQuantityUpdateDto.CartItemId),
+                new SqlParameter("@CartProductQuantity",cartItemQuantityUpdateDto.Quantity),
+
+            };
+            return await this.SqlConnectionManager(shoppingCartItemDtoSp, sqlParameters);
+        }
     }
 
 }
