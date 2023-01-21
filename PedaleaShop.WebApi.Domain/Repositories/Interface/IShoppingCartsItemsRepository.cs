@@ -12,5 +12,6 @@ namespace PedaleaShop.WebApi.Domain.Services.Interface.Repositories
     public interface IShoppingCartsItemsRepository : IRepository<ShoppingCartItemDto>
     {
         Task<DataTable> AddEntityAsync(string shoppingCartItemDtoSp, ShoppingCartItemToAddDto cartItemToAddDto);
+        Task<DataTable> DeleteEntityAsync(string shoppingCartItemDtoSp, int Id);
     }
 }

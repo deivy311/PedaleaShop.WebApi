@@ -34,6 +34,16 @@ namespace PedaleaShop.WebApi.Infrastructure.Repositories
             return await this.SqlConnectionManager(shoppingCartItemDtoSp, sqlParameters);
 
         }
+
+        public async Task<DataTable> DeleteEntityAsync(string shoppingCartItemDtoSp, int Id)
+        {
+            List<SqlParameter> sqlParameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@CartProductToDeleteId",Id),
+
+            };
+            return await this.SqlConnectionManager(shoppingCartItemDtoSp, sqlParameters);
+        }
     }
 
 }

@@ -13,5 +13,6 @@ namespace PedaleaShop.WebApi.Domain.Services.Interface
         Task<IEnumerable<ShoppingCartItemDto>> GetEntities(string userId);
         Task<ShoppingCartItemDto> GetEntity(int Id);
         Task<ShoppingCartItemDto?> AddEntity(ShoppingCartItemToAddDto cartItemToAddDto);
+        Task<ShoppingCartItemDto?> DeleteEntity(int Id);
     }
 }

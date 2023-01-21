@@ -103,17 +103,29 @@ namespace PedaleaShop.WebApi.Application.Controllers
                     return NoContent();
                 }
 
-                //var product = await productRepository.GetProduct(newCartItem.ProductId);
-
-                //if (product == null)
-                //{
-                //    throw new Exception($"Something went wrong when attempting to retrieve product (productId:({cartItemToAddDto.ProductId})");
-                //}
-
-                //var newCartItemDto = newCartItem.ConvertToDto(product);
 
                 return CreatedAtAction(nameof(GetItem), new { id = newCartItem.Id }, newCartItem);
 
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+        [HttpDelete("{Id:int}")]
+        public async Task<ActionResult<ShoppingCartItemDto>> DeleteItem(int Id)
+        {
+            try
+            {
+                var cartItem = await this._servicesShoppingCartItem.DeleteEntity(Id);
+
+                if (cartItem == null)
+                {
+                    return NotFound();
+                }
+
+                 return Ok(cartItem);
 
             }
             catch (Exception ex)
