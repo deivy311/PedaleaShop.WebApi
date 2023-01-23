@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PedaleaShop.WebApi.Domain.Entities;
+using PedaleaShop.Entities.Dtos;
 using PedaleaShop.Entities.Dtos;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿using PedaleaShop.WebApi.Domain.Entities;
+﻿using PedaleaShop.Entities.Dtos;
 using PedaleaShop.WebApi.Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
