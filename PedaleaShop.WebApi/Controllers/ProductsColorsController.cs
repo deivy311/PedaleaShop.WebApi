@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
-using PedaleaShop.WebApi.Domain.Entities.Dtos;
+using PedaleaShop.Entities.Dtos;
 using PedaleaShop.WebApi.Domain.Services.Interface;
 using PedaleaShop.WebApi.Domain.Extensions;
 using System.Data;
@@ -20,12 +20,12 @@ namespace PedaleaShop.WebApi.Application.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductColorDto>>> GetItems()
+        public async Task<ActionResult<IEnumerable<ProductsColorDto>>> GetItems()
         {
             try
             {
 
-                IEnumerable<ProductColorDto> ProductsColors = await this._servicesProductColor.GetEntities();
+                IEnumerable<ProductsColorDto> ProductsColors = await this._servicesProductColor.GetEntities();
 
                 if (ProductsColors == null)
                 {
@@ -46,7 +46,7 @@ namespace PedaleaShop.WebApi.Application.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<ProductColorDto>> GetItem(int id)
+        public async Task<ActionResult<ProductsColorDto>> GetItem(int id)
         {
             try
             {

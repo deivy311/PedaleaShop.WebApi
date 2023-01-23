@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
-using PedaleaShop.WebApi.Domain.Entities.Dtos;
+using PedaleaShop.Entities.Dtos;
 using PedaleaShop.WebApi.Domain.Services.Interface;
 using PedaleaShop.WebApi.Domain.Extensions;
 using System.Data;
@@ -133,7 +133,7 @@ namespace PedaleaShop.WebApi.Application.Controllers
 
         //[HttpGet]
         //[Route("{categoryId}/GetItemsByCategory")]
-        //public async Task<ActionResult<IEnumerable<ProductDto>>> GetItemsByCategory(int categoryId)
+        //public async Task<ActionResult<IEnumerable<ProductsDto>>> GetItemsByCategory(int categoryId)
         //{
         //    try
         //    {

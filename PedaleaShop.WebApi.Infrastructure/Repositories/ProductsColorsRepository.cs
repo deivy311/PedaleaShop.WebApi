@@ -7,13 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PedaleaShop.WebApi.Infrastructure.Repository;
-using PedaleaShop.WebApi.Domain.Entities.Dtos;
+using PedaleaShop.Entities.Dtos;
 using Microsoft.Extensions.Configuration;
 
 namespace PedaleaShop.WebApi.Infrastructure.Repositories
 {
 
-    public class ProductsColorsRepository : Repository<ProductColorDto>, IProductsColorsRepository
+    public class ProductsColorsRepository : Repository<ProductsColorDto>, IProductsColorsRepository
     {
 
         public ProductsColorsRepository(IConfiguration configuration) : base(configuration)

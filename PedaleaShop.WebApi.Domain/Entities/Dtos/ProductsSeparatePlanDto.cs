@@ -1,4 +1,4 @@
-﻿namespace PedaleaShop.WebApi.Domain.Entities.Dtos
+﻿namespace PedaleaShop.Entities.Dtos
 {
     public class ProductSeparatePlan
     {

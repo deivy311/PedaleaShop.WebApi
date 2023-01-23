@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PedaleaShop.WebApi.Domain.Entities;
-using PedaleaShop.WebApi.Domain.Entities.Dtos;
+using PedaleaShop.Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -434,7 +434,7 @@ namespace PedaleaShop.WebApi.Infrastructure.Context
 			  .HasKey(m => new { m.LoginProvider, m.ProviderKey });
 			}
 		//Dtos
-		public DbSet<ProductDto> ProductsDto { get; set; }
+		public DbSet<ProductsDto> ProductsDto { get; set; }
 		public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 			public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
 			public DbSet<Product> Products { get; set; }

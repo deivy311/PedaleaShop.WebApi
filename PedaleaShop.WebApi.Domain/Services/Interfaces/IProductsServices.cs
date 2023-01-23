@@ -1,5 +1,5 @@
 ﻿using PedaleaShop.WebApi.Domain.Entities;
-using PedaleaShop.WebApi.Domain.Entities.Dtos;
+using PedaleaShop.Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,8 +9,8 @@ namespace PedaleaShop.WebApi.Domain.Services.Interface
 {
     public interface IProductsServices
     {
-        Task<IEnumerable<ProductDto>> GetEntities();
-        Task<ProductDto> GetEntity(int Id);
-        Task<IEnumerable<ProductDto>> GetEntitiesByCategory(int categoryId);
+        Task<IEnumerable<ProductsDto>> GetEntities();
+        Task<ProductsDto> GetEntity(int Id);
+        Task<IEnumerable<ProductsDto>> GetEntitiesByCategory(int categoryId);
     }
 }

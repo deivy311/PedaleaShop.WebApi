@@ -6,7 +6,7 @@ using PedaleaShop.WebApi.Domain.Entities;
 using PedaleaShop.WebApi.Domain.Services.Interface;
 using PedaleaShop.WebApi.Domain.Services.Interface.Repositories;
 using PedaleaShop.WebApi.Infrastructure.Repository;
-using PedaleaShop.WebApi.Domain.Entities.Dtos;
+using PedaleaShop.Entities.Dtos;
 using System.Data;
 using PedaleaShop.WebApi.Domain.Extensions;
 

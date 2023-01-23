@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PedaleaShop.WebApi.Domain.Entities.Dtos
+namespace PedaleaShop.Entities.Dtos
 {
-    public class ProductSizeDto
+    public class ProductsSizeDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

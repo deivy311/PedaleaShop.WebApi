@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PedaleaShop.WebApi.Domain.Entities.Dtos
+namespace PedaleaShop.Entities.Dtos
 {
     public class ShoppingCartItemToAddDto
     {

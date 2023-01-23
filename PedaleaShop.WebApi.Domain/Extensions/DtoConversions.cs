@@ -1,5 +1,5 @@
 ﻿using PedaleaShop.WebApi.Domain.Entities;
-using PedaleaShop.WebApi.Domain.Entities.Dtos;
+using PedaleaShop.Entities.Dtos;
 using System.Data;
 
 namespace PedaleaShop.WebApi.Domain.Extensions
@@ -26,27 +26,27 @@ namespace PedaleaShop.WebApi.Domain.Extensions
                 IconCSS = Convert.ToString(row["IconCSS"]),
             });
         }
-        public static IEnumerable<ProductColorDto> ConvertToProductColorDto(this DataTable Colors)
+        public static IEnumerable<ProductsColorDto> ConvertToProductColorDto(this DataTable Colors)
         {
-            return Colors.AsEnumerable().Select(row => new ProductColorDto
+            return Colors.AsEnumerable().Select(row => new ProductsColorDto
             {
                 Id = Convert.ToInt32(row["Id"]),
                 Name = Convert.ToString(row["Name"]),
                 IconCSS = Convert.ToString(row["IconCSS"]),
             });
         }
-        public static IEnumerable<ProductSizeDto> ConvertToProductSizeDto(this DataTable Sizes)
+        public static IEnumerable<ProductsSizeDto> ConvertToProductSizeDto(this DataTable Sizes)
         {
-            return Sizes.AsEnumerable().Select(row => new ProductSizeDto
+            return Sizes.AsEnumerable().Select(row => new ProductsSizeDto
             {
                 Id = Convert.ToInt32(row["Id"]),
                 Name = Convert.ToString(row["Name"]),
                 IconCSS = Convert.ToString(row["IconCSS"]),
             });
         }
-        public static IEnumerable<ProductDto> ConvertToProductDto(this DataTable products)
+        public static IEnumerable<ProductsDto> ConvertToProductDto(this DataTable products)
             {
-                return products.AsEnumerable().Select(row => new ProductDto
+                return products.AsEnumerable().Select(row => new ProductsDto
                 {
                     Id = Convert.ToInt32(row["Id"]),
                     Name = Convert.ToString(row["Name"]),
@@ -85,10 +85,10 @@ namespace PedaleaShop.WebApi.Domain.Extensions
 
             });
         }
-        public static ProductDto ConvertToDto(this Product product)
+        public static ProductsDto ConvertToDto(this Product product)
                                                    
         {
-            return new ProductDto
+            return new ProductsDto
             {
                 Id=product.Id,
                 Name = product.Name,

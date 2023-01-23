@@ -1,5 +1,5 @@
 ﻿using PedaleaShop.WebApi.Domain.Entities;
-using PedaleaShop.WebApi.Domain.Entities.Dtos;
+using PedaleaShop.Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +9,7 @@ namespace PedaleaShop.WebApi.Domain.Services.Interface
 {
     public interface IProductsSizesServices
     {
-        Task<IEnumerable<ProductSizeDto>> GetEntities();
-        Task<ProductSizeDto> GetEntity(int Id);
+        Task<IEnumerable<ProductsSizeDto>> GetEntities();
+        Task<ProductsSizeDto> GetEntity(int Id);
     }
 }

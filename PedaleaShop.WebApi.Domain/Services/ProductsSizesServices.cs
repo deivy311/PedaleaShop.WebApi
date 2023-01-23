@@ -6,7 +6,7 @@ using PedaleaShop.WebApi.Domain.Entities;
 using PedaleaShop.WebApi.Domain.Services.Interface;
 using PedaleaShop.WebApi.Domain.Services.Interface.Repositories;
 using PedaleaShop.WebApi.Infrastructure.Repository;
-using PedaleaShop.WebApi.Domain.Entities.Dtos;
+using PedaleaShop.Entities.Dtos;
 using System.Data;
 using PedaleaShop.WebApi.Domain.Extensions;
 
@@ -22,11 +22,11 @@ namespace PedaleaShop.WebApi.Domain.Services
             _repository = repository;
         }
 
-        public async Task<IEnumerable<ProductSizeDto>> GetEntities()
+        public async Task<IEnumerable<ProductsSizeDto>> GetEntities()
         {
             return (await _repository.ProductsSizesRepository.GetAllAsync("dbo.AllProductsSizesView")).ConvertToProductSizeDto();
         }
-        public async Task<ProductSizeDto> GetEntity(int Id)
+        public async Task<ProductsSizeDto> GetEntity(int Id)
         {
             return (await _repository.ProductsSizesRepository.GetAllAsync("dbo.AllProductsSizesView")).ConvertToProductSizeDto().FirstOrDefault();
         }
