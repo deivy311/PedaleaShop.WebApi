@@ -39,6 +39,7 @@ namespace PedaleaShop.WebApi.Application
             services.AddTransient<IProductsColorsServices, ProductsColorsServices>();
             services.AddTransient<IProductsSizesServices, ProductsSizesServices>();
             services.AddTransient<IShoppingCartsItemsServices, ShoppingCartsItemsServices>();
+            services.AddTransient<IUsersServices, UsersServices>();
             services.AddTransient<IUnitRepository, UnitRepository>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
