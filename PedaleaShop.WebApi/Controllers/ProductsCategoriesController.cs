@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using PedaleaShop.Entities.Dtos;
 using PedaleaShop.WebApi.Domain.Services.Interface;
-using PedaleaShop.WebApi.Domain.Extensions;
+using PedaleaShop.Entities.Extensions;
 using System.Data;
 
 namespace PedaleaShop.WebApi.Application.Controllers

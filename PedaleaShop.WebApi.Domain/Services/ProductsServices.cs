@@ -8,7 +8,7 @@ using PedaleaShop.WebApi.Domain.Services.Interface.Repositories;
 using PedaleaShop.WebApi.Infrastructure.Repository;
 using PedaleaShop.Entities.Dtos;
 using System.Data;
-using PedaleaShop.WebApi.Domain.Extensions;
+using PedaleaShop.Entities.Extensions;
 
 namespace PedaleaShop.WebApi.Domain.Services
 {

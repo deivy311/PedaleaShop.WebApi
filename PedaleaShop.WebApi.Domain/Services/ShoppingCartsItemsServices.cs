@@ -6,9 +6,8 @@ using PedaleaShop.Entities.Dtos;
 using PedaleaShop.WebApi.Domain.Services.Interface;
 using PedaleaShop.WebApi.Domain.Services.Interface.Repositories;
 using PedaleaShop.WebApi.Infrastructure.Repository;
-using PedaleaShop.Entities.Dtos;
 using System.Data;
-using PedaleaShop.WebApi.Domain.Extensions;
+using PedaleaShop.Entities.Extensions;
 
 namespace PedaleaShop.WebApi.Domain.Services
 {
@@ -47,9 +46,14 @@ namespace PedaleaShop.WebApi.Domain.Services
             return (await _repository.ShoppingCartsItemsRepository.GetAllAsync("dbo.AllShoppingCartsItemsView")).ConvertToShoppingCartItemDto().FirstOrDefault();
         }
 
+        public async Task<ShoppingCartItemDto?> UpdateEntittyIsSeparated(int Id, ShoppingCartItemIsSeparatedUpdateDto cartItemIsSeparatedUpdateDto)
+        {
+            return (await _repository.ShoppingCartsItemsRepository.UpdateEntityIsSeparatedAsync("dbo.ShoppingCartItemIsSeparatedToUpdateSp", cartItemIsSeparatedUpdateDto)).ConvertToShoppingCartItemDto()?.FirstOrDefault();
+        }
+
         public async Task<ShoppingCartItemDto?> UpdateEntittyQuantity(int Id, ShoppingCartItemQuantityUpdateDto cartItemQuantityUpdateDto)
         {
-            return (await _repository.ShoppingCartsItemsRepository.UpdateEntityAsync("dbo.ShoppingCartItemToUpdateSp", cartItemQuantityUpdateDto)).ConvertToShoppingCartItemDto()?.FirstOrDefault();
+            return (await _repository.ShoppingCartsItemsRepository.UpdateEntityQuantityAsync("dbo.ShoppingCartItemQuantityToUpdateSp", cartItemQuantityUpdateDto)).ConvertToShoppingCartItemDto()?.FirstOrDefault();
         }
     }
 }

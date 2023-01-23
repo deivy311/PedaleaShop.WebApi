@@ -29,7 +29,8 @@ namespace PedaleaShop.WebApi.Infrastructure.Repositories
                 new SqlParameter("@CartProductToAddId",cartItemToAddDto.CartId),
                 new SqlParameter("@ProductToAddId",cartItemToAddDto.ProductId),
                 new SqlParameter("@QuantityProductToAddId",cartItemToAddDto.Quantity),
-
+                new SqlParameter("@IsSeparatedProductToAddId",cartItemToAddDto.Separated),
+                new SqlParameter("@IsPaidProductToAddId",cartItemToAddDto.Paid),
             };
             return await this.SqlConnectionManager(shoppingCartItemDtoSp, sqlParameters);
 
@@ -45,7 +46,18 @@ namespace PedaleaShop.WebApi.Infrastructure.Repositories
             return await this.SqlConnectionManager(shoppingCartItemDtoSp, sqlParameters);
         }
 
-        public async Task<DataTable> UpdateEntityAsync(string shoppingCartItemDtoSp, ShoppingCartItemQuantityUpdateDto cartItemQuantityUpdateDto)
+        public async Task<DataTable> UpdateEntityIsSeparatedAsync(string shoppingCartItemDtoSp, ShoppingCartItemIsSeparatedUpdateDto cartItemIsSeparatedUpdateDto)
+        {
+            List<SqlParameter> sqlParameters = new List<SqlParameter>()
+            {
+                new SqlParameter("@CartProductToUpdateId",cartItemIsSeparatedUpdateDto.CartItemId),
+                new SqlParameter("@CartProductIsSeparated",cartItemIsSeparatedUpdateDto.Separated),
+
+            };
+            return await this.SqlConnectionManager(shoppingCartItemDtoSp, sqlParameters);
+        }
+
+        public async Task<DataTable> UpdateEntityQuantityAsync(string shoppingCartItemDtoSp, ShoppingCartItemQuantityUpdateDto cartItemQuantityUpdateDto)
         {
             List<SqlParameter> sqlParameters = new List<SqlParameter>()
             {

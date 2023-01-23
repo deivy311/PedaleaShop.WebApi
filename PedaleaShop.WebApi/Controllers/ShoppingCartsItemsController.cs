@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using PedaleaShop.Entities.Dtos;
 using PedaleaShop.WebApi.Domain.Services.Interface;
-using PedaleaShop.WebApi.Domain.Extensions;
+using PedaleaShop.Entities.Extensions;
 using System.Data;
 
 namespace PedaleaShop.WebApi.Application.Controllers
@@ -10,11 +10,11 @@ namespace PedaleaShop.WebApi.Application.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class ShoppingCarstItemsController : ControllerBase
+    public class ShoppingCartsItemsController : ControllerBase
     {
         private readonly IShoppingCartsItemsServices _servicesShoppingCartItem;
         private readonly IConfiguration _configuration;
-        public ShoppingCarstItemsController(IShoppingCartsItemsServices ShoppingCartItemRepository)
+        public ShoppingCartsItemsController(IShoppingCartsItemsServices ShoppingCartItemRepository)
         {
             this._servicesShoppingCartItem = ShoppingCartItemRepository;
         }
@@ -133,12 +133,32 @@ namespace PedaleaShop.WebApi.Application.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
-        [HttpPatch("{Id:int}")]
+        [HttpPatch("UpdateQuantity/{Id:int}")]
         public async Task<ActionResult<ShoppingCartItemDto>> UpdateQuantity(int Id, ShoppingCartItemQuantityUpdateDto cartItemQuantityUpdateDto)
         {
             try
             {
                 var cartItem = await this._servicesShoppingCartItem.UpdateEntittyQuantity(Id, cartItemQuantityUpdateDto);
+                if (cartItem == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(cartItem);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+
+        }
+        [HttpPatch("UpdateIsSeparated/{Id:int}")]
+        public async Task<ActionResult<ShoppingCartItemDto>> UpdateIsSeparated(int Id, ShoppingCartItemIsSeparatedUpdateDto cartItemIsSeparatedUpdateDto)
+        {
+            try
+            {
+                var cartItem = await this._servicesShoppingCartItem.UpdateEntittyIsSeparated(Id, cartItemIsSeparatedUpdateDto);
                 if (cartItem == null)
                 {
                     return NotFound();

@@ -13,6 +13,8 @@ namespace PedaleaShop.WebApi.Domain.Services.Interface.Repositories
     {
         Task<DataTable> AddEntityAsync(string shoppingCartItemDtoSp, ShoppingCartItemToAddDto cartItemToAddDto);
         Task<DataTable> DeleteEntityAsync(string shoppingCartItemDtoSp, int Id);
-        Task<DataTable> UpdateEntityAsync(string shoppingCartItemDtoSp, ShoppingCartItemQuantityUpdateDto cartItemQuantityUpdateDto);
+        Task<DataTable> UpdateEntityQuantityAsync(string shoppingCartItemDtoSp, ShoppingCartItemQuantityUpdateDto cartItemQuantityUpdateDto);
+        Task<DataTable> UpdateEntityIsSeparatedAsync(string shoppingCartItemDtoSp, ShoppingCartItemIsSeparatedUpdateDto cartItemIsSeparatedUpdateDto);
+
     }
 }
